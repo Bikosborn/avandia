@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFC0CB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .quiz-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #FF69B4;
+        }
+        button {
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #FF1493;
+        }
+        #result-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container" id="quiz">
+        <h1>HELLO AVANDIA. I RESEARCHED THE BEST PROPOSAL TRUST ME</h1>
+        <p>This quiz is  my best way to ask you to be my girlfreind coz it will show that you are always enjoying our time together 
+            Now sit down breath in and ...out  and think about that first kiss I gave you jana , and the last i gave you today
+            You are going to be amazing at this my Girl. Good luck!</p>
+        <button onclick="startQuiz()">Start Quiz</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What's my favorite Foobal Team?",
+                answers: ["Chelsea", "Arsenal", "Manchester United", "Newcastle"],
+                correct: 2
+            },
+            {
+                question: "What's my favorite food?",
+                answers: ["Fish", "Beef", "Chicken", "Chapos"],
+                correct: 1
+            },
+            {
+                question: "Where did we first meet?",
+                answers: ["School", "Work", "Park", "Online"],
+                correct: 0
+            },
+            {
+                question: "What's my dream vacation destination?",
+                answers: ["Paris", "Bali", "New York", "Tokyo"],
+                correct: 3
+            },
+            {
+                question: "What's my favorite hobby?",
+                answers: ["Reading", "Cooking", "Painting", "Hiking"],
+                correct: 2
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function startQuiz() {
+            currentQuestion = 0;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const quiz = document.getElementById('quiz');
+            const question = questions[currentQuestion];
+
+            let html = `<h1>${question.question}</h1>`;
+            for (let i = 0; i < question.answers.length; i++) {
+                html += `<button onclick="checkAnswer(${i})">${question.answers[i]}</button>`;
+            }
+
+            quiz.innerHTML = html;
+        }
+
+        function checkAnswer(answer) {
+            if (answer === questions[currentQuestion].correct) {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    showQuestion();
+                } else {
+                    showFinalQuestion();
+                }
+            } else {
+                alert("Come on babe Give it another try. Think about That kiss kwa hostel!");
+            }
+        }
+
+        function showFinalQuestion() {
+            const quiz = document.getElementById('quiz');
+            quiz.innerHTML = `
+                <h1>I TRUST YOU KNOW ME WELL AVANDIA.. WILL YOU MAKE ME THE HAPPIEST MAN BY BEING MY GIRLFRIEND?</h1>
+                <button onclick="showResult(true)">YES</button>
+                <button onclick="showResult(false)">NO</button>
+            `;
+        }
+
+        function showResult(answer) {
+            const quiz = document.getElementById('quiz');
+            if (answer) {
+                quiz.innerHTML = `
+                    <h1>Unaezanidinya sasa Jaber ❤️</h1>
+                    <img id="C:\Users\Q-C TECH\Downloads\people-2562102_640.jpg" alt="Two people hugging">
+                `;
+            } else {
+                quiz.innerHTML = `
+                    <h1>Oh no...</h1>
+                    <img id="C:\Users\Q-C TECH\Downloads\crying-african-man-4670799_640.jpg" alt="Someone crying">
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
